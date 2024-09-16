@@ -1,10 +1,6 @@
 #!/usr/bin/bash
-[ -z "$1" ] && d_name="animegame" || d_name="$1"
-[ -z "$2" ] && d_size="1440x900" || d_size="$2"
-[ -z "$3" ] && VERSION="3.1" || VERSION="$3"
-
 # Set proxy
-[ "$VERSION" = "melon" ] && PROXY="http://127.0.0.1:8081/" || PROXY="http://127.0.0.1:8080/"
+PROXY="http://127.0.0.1:8080/"
 echo "Using proxy address "$PROXY""
 
 # Set environment variables
@@ -13,19 +9,37 @@ for envar in $PROXY_ENV; do export $envar="$PROXY"; done
 export WINEDEBUG="-all"
 
 # Set commands
-export WINEFSYNC="1" WINEESYNC="1"
-export WINEPREFIX="/home/$USER/.local/share/lutris/runners/wine"
 EXECUTABLE="prime-run cultivation" # Launcher command
-MITM="mitmdump -s proxy.py" # MITM command
+
+# Prompt user to start with mitmproxy
+read -p "Start with mitmproxy? [Y/n] " answer
+case ${answer:0:1} in
+    y|Y|"" )
+        MITM="mitmdump -s proxy.py" # MITM command
+        USE_MITM=1
+    ;;
+    n|N )
+        echo "Starting without mitmproxy."
+        MITM=""
+        USE_MITM=0
+    ;;
+    * )
+        echo "Invalid input. Starting without mitmproxy."
+        MITM=""
+        USE_MITM=0
+    ;;
+esac
 
 # Set $MITM cleanup for termination
 cleanup() {
-    echo "Terminating mitmdump..."
-    pkill -15 mitmdump
-    if pgrep -x "mitmdump" > /dev/null; then
-        echo "mitmdump terminated!"
-    else
-        echo "mitmdump maybe terminated?"
+    if [ "$USE_MITM" -eq 1 ]; then
+        echo "Terminating mitmdump..."
+        pkill -15 mitmdump
+        if pgrep -x "mitmdump" > /dev/null; then
+            echo "mitmdump terminated!"
+        else
+            echo "mitmdump may have terminated."
+        fi
     fi
 }
 
@@ -34,7 +48,9 @@ trap cleanup INT
 
 # Execute stuff
 echo "Starting..."
-$MITM &
+if [ "$USE_MITM" -eq 1 ]; then
+    $MITM &
+fi
 $EXECUTABLE
 
 # Call cleanup when $EXECUTABLE exits
