@@ -1,0 +1,173 @@
+html {
+    background-color: #1e1e2e;
+    border: #1e1e2e;
+}
+
+body {
+    background-color: transparent; /* Remove background color */
+    border: none; /* Remove border */
+    width: 256px; /* Set the width of the popup */
+    height: auto; /* Adjust height as needed */
+    padding: 32px; /* Add padding inside the popup */
+    background-color: #1e1e2e; /* Set the background color */
+    color: #cdd6f4; /* Set the text color */
+    margin: 0; /* Remove default margin */
+    overflow: visible; /* Allow overflow content to be visible */
+}
+
+#container {
+display: flex; /* Use flexbox layout */
+flex-direction: column; /* Arrange children in a column */
+align-items: center; /* Center children horizontally */
+width: 100%; /* Ensure container takes full width */
+height: auto; /* Allow container to adjust height based on content */
+}
+
+h1 {
+    font-family: "Fredoka", sans-serif;
+    font-weight: 600;
+    font-size: 28px; /* Set the font size */
+    margin-bottom: 16px; /* Add space below the heading */
+    color: #cdd6f4; /* Set the heading color */
+}
+
+.input-field {
+    width: 100%; /* Make the input field full width */
+    margin-bottom: 16px; /* Add space below the input field */
+}
+
+label {
+    display: block; /* Make the label a block element */
+    margin-bottom: 8px; /* Add space below the label */
+    font-family: "Fredoka", sans-serif;
+    font-weight: 500;
+    font-size: 12px; /* Set the font size */
+    color: #bac2de; /* Set the label color */
+}
+
+.custom-select-container {
+    position: relative; /* Position relative to the parent */
+    width: 100%; /* Make the container full width */
+}
+
+.custom-select-container:hover {
+    opacity: 0.8; /* Dim the container on hover */
+    transition: opacity 0.1s ease-in-out; /* Ease in and out on hover */
+}
+
+.custom-select {
+    position: relative; /* Position relative to the parent */
+    background-color: #313244; /* Set the background color */
+    border-radius: 12px; /* Round the corners */
+    padding: 2px; /* Add padding inside the container */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: border-color 0.1s ease-in-out, max-height 0.1s ease-in-out; /* Smooth transition for border color and height */
+}
+
+
+.select-selected {
+    font-family: "Fredoka", sans-serif;
+    font-weight: 400;
+    color: #cdd6f4; /* Set the text color */
+    font-size: 14px; /* Set the font size */
+    padding: 10px;
+}
+
+.select-items {
+    position: absolute; /* Position absolute to the parent */
+    background-color: #313244; /* Set the background color */
+    border-radius: 12px; /* Round the corners */
+    top: 100%; /* Position below the select box */
+    left: 0;
+    right: 0;
+    z-index: 99; /* Ensure it is on top */
+    max-height: 200px; /* Set max height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.32); /* Add a shadow */
+    transition: opacity 0.1s ease-in-out; /* Smooth transition for opacity */
+    opacity: 0; /* Hide the dropdown items by default */
+    pointer-events: none;
+}
+
+.select-items div {
+    color: #cdd6f4; /* Set the text color */
+    font-family: "Fredoka", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 10px 8px; /* Add padding inside the items */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.1s ease-in-out; /* Smooth transition for background color */
+}
+
+.select-items div:hover {
+    background-color: #1e1e2e;
+    transition: 0.2s; /* add transition effect */
+}
+
+.select-show {
+    opacity: 1; /* Show the dropdown items */
+    pointer-events: all;
+    transition: opacity 0.1s ease-in; /* Ease in on show */
+}
+
+.select-hide {
+    opacity: 0; /* Hide the dropdown items */
+    pointer-events: none;
+    transition: opacity 0.1s ease-out; /* Ease out on hide */
+}
+
+.material-input-container {
+    width: 100%; /* Make the container full width */
+    padding: 10px 8px; /* Add padding inside the container */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    border-radius: 12px; /* Round the corners */
+    background-color: #181825; /* Set the background color */
+    transition: border-color 0.1s ease-in-out, max-height 0.1s ease-in-out; /* Smooth transition for border color and height */
+    cursor: text; /* Change the cursor to a text cursor */
+}
+
+.material-input-container:focus-within {
+    box-shadow: inset 0 0 0 2px #45475a; /* Add an outer outline on focus */
+    transition: box-shadow 0.1s ease-in-out; /* Add transition effect for box-shadow */
+}
+
+.material-input-container:not(:focus-within) {
+    transition: box-shadow 0.1s ease-in-out; /* Add transition effect for box-shadow when losing focus */
+    box-shadow: none; /* Remove the outline when losing focus */
+}
+
+.material-select, .material-input {
+    font-family: "Fredoka", sans-serif;
+    font-weight: 400;
+    width: 100%; /* Make the input/select full width */
+    border: none; /* Remove default border */
+    background: none; /* Remove default background */
+    color: #cdd6f4; /* Set the text color */
+    font-size: 14px; /* Set the font size */
+    outline: none; /* Remove default outline */
+}
+
+.material-button {
+    font-family: "Fredoka", sans-serif;
+    font-weight: 500;
+    width: 100%; /* Make the button full width */
+    padding: 10px 8px; /* Add padding inside the container */
+    background-color: #b4befe; /* Set the background color */
+    color: #1e1e2e; /* Set the text color */
+    border: none; /* Remove default border */
+    border-radius: 12px; /* Round the corners */
+    font-size: 16px; /* Set the font size */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.1s ease-out, opacity 0.1s ease-out, transform 0.1s ease-out; /* Smooth transition for background color, opacity, and transform */
+}
+
+.material-button:hover {
+    opacity: 0.8; /* Dim the button on hover */
+    transition: opacity 0.1s ease-in; /* Ease in on hover */
+}
+
+.material-button:active {
+    opacity: 0.6; /* Dim the button more on click */
+    transform: scale(0.98); /* Shrink the button slightly on click */
+    transition: opacity 0.1s ease-out, transform 0.1s ease-out; /* Ease out on click */
+}
