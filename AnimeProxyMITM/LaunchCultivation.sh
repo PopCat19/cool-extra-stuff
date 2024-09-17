@@ -7,9 +7,10 @@ echo "Using proxy address "$PROXY""
 PROXY_ENV="http_proxy https_proxy ftp_proxy all_proxy HTTP_PROXY HTTPS_PROXY FTP_PROXY ALL_PROXY"
 for envar in $PROXY_ENV; do export $envar="$PROXY"; done
 export WINEDEBUG="-all"
+export WEBKIT_DISABLE_DMABUF_RENDERER="1"
 
 # Set commands
-EXECUTABLE="prime-run cultivation" # Launcher command
+EXECUTABLE="cultivation" # Launcher command
 
 # Prompt user to start with mitmproxy
 read -p "Start with mitmproxy? [Y/n] " answer
